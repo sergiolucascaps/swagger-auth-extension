@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+        <link href="extension-body.css" rel="stylesheet" />
+    </head>
+    <body>
+        <div id="app">
+            <section id="header">
+                <h1>Fácil Auth</h1>
+            </section>
+
+            <section id="params">
+                <!--ENVIRONMENT-->
+                <div id="environment">
+                    <div>
+                        <p>Ambiente</p>
+                    </div>
+
+                    <div>
+                        <input type="radio" name="env" id="env_1" value="1" />
+                        <label for="env_1">DEV</label>&nbsp;&nbsp;
+
+                        <input type="radio" name="env" id="env_2" value="2" checked/>
+                        <label for="env_2">QAS</label>&nbsp;&nbsp;
+
+                        <input type="radio" name="env" id="env_3" value="3" />
+                        <label for="env_3">PRD</label>
+                    </div>
+                </div>
+                  
+                <br />
+
+                <!--EMAIL-->
+                <div id="email">
+                    <label for="txt_email">Email:</label>
+                    <!-- <input type="text" id="txt_email" name="txt_email" /> -->
+                    <input id="txt_email" type="text" class="form-control" placeholder="Email">
+                </div>
+
+                <br />
+
+                <!--KEY-->
+                <div id="key">
+                    <label for="txt_key">Key:</label>
+                    <!-- <input type="text" id="txt_key" name="txt_key" /> -->
+                    <input id="txt_key" type="text" class="form-control" placeholder="Key">
+                </div>
+
+                <br />
+
+                <!--APIVERSION-->
+                <div id="apiversion">
+                    <label for="txt_apiversion">Api version:</label>
+                    <!-- <input type="text" id="txt_apiversion" name="txt_apiversion" /> -->
+                    <input id="txt_apiversion" type="text" class="form-control" placeholder="Api version">
+                </div>
+
+                <br />
+
+            </section>
+
+            <section id="button">
+                <!-- <button id="btn-auth">Autenticar</button> -->
+                <button id="btn-auth" type="button" class="btn btn-default">Autenticar</button>
+            </section>
+        </div>
+    </body>
+    <script src="extension-body.js"></script>
+</html>

@@ -1,0 +1,32 @@
+{
+  "manifest_version": 3,
+  "name": "Fácil Auth",
+  "description": "Extensão de login no swagger do projeto pagamentos (BRF)",
+  "version": "1.0",
+  "icons": {
+    "16": "/src/assets/icons/extension-icon.png",
+    "32": "/src/assets/icons/extension-icon.png",
+    "48": "/src/assets/icons/extension-icon.png",
+    "128": "/src/assets/icons/extension-icon.png"
+  },
+  "background": {
+    "service_worker": "/src/global-js/global.js"
+  },
+  "action": {
+    "default_icon": {
+      "16": "/src/assets/icons/extension-icon.png",
+      "32": "/src/assets/icons/extension-icon.png",
+      "48": "/src/assets/icons/extension-icon.png",
+      "128": "/src/assets/icons/extension-icon.png"
+    },
+    "permissions": ["tabs"],
+    "default_popup": "/src/html/extension-body/extension-body.html"
+  },
+  "content_scripts": [
+    {
+      "js": ["/src/page-js/content.js"],
+      "matches": ["*://brf-api-iuris-pagamentos-qas.azurewebsites.net/*"],
+      "run_at": "document_end"
+    }
+  ]
+}
