@@ -26,7 +26,11 @@ function setGlobals(request) {
 
 async function doRequest() {
     let urlComplete = url + key;
-    let res = await fetch(urlComplete);
+    let res = await fetch(urlComplete, {
+        headers: {
+            'userEmail': email
+        }
+    });
 
     if (res.ok) {
 
