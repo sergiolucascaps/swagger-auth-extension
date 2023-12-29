@@ -10,12 +10,14 @@ class AuthConfig {
     key = '';
     environment = '';
     apiversion = '';
+    action = ''; //1 = Authorize - 2 = unauthorize
 
-    constructor(email, key, environment, apiversion) {
+    constructor(email, key, environment, apiversion, action) {
         this.email = email;
         this.key = key;
         this.environment = environment;
         this.apiversion = apiversion;
+        this.action = action;
     }
 }
 
@@ -35,7 +37,7 @@ function isValid() {
     return true;
 }
 
-async function authenticate() {
+async function authenticate(action) {
 
     if(!isValid()) {
         alert("Falta preencher dados!")
@@ -43,13 +45,17 @@ async function authenticate() {
     }
 
     const [currentTab] = await getCurrentTab();
-    let config = new AuthConfig(txt_email.value, txt_key.value, environment, txt_apiversion.value);
+    let config = new AuthConfig(txt_email.value, txt_key.value, environment, txt_apiversion.value, action);
     localStorage.setItem("facilauthconfig", JSON.stringify(config));
     await chrome.tabs.sendMessage(currentTab.id, config);
 }
 
 document.getElementById("btn-auth").addEventListener("click", async () => {
-    await authenticate();
+    await authenticate(1);
+});
+
+document.getElementById("btn-unauth").addEventListener("click", async () => {
+    await authenticate(2);
 });
 
 if(localstorageconfig != null) {

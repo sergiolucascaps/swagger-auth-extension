@@ -25,7 +25,7 @@
   "content_scripts": [
     {
       "js": ["/src/page-js/content.js"],
-      "matches": ["*://brf-api-iuris-pagamentos-qas.azurewebsites.net/*"],
+      "matches": ["https://*/*"],
       "run_at": "document_end"
     }
   ]

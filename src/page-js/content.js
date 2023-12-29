@@ -64,7 +64,6 @@ function isAuthorized() {
 }
 
 async function authenticate() {
-    let token = await getToken();
 
     let authorized = false;
     if(document.querySelector('[aria-label="auth-bearer-value"]') == null) {
@@ -89,6 +88,8 @@ async function authenticate() {
         authButton.click();
     }
 
+    let token = await getToken();
+
     let nativeInputValueSetter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, "value").set;
     nativeInputValueSetter.call(tokenInput, token);
 
@@ -98,8 +99,39 @@ async function authenticate() {
     closeButton.click();
 }
 
+function unauthenticate() {
+    let authorized = false;
+    if(document.querySelector('[aria-label="auth-bearer-value"]') == null) {
+        let btnAuth = document.getElementsByClassName("btn authorize unlocked")[0];
+
+        if(btnAuth == null) {
+            authorized = true;
+            btnAuth = document.getElementsByClassName("btn authorize locked")[0];
+        }
+
+        btnAuth.click();
+    }
+
+    do { /* esperar enquanto não abre a modal*/ } while(document.querySelector(".auth-btn-wrapper .modal-btn.auth") == null);
+    
+    let authButton = document.querySelector(".auth-btn-wrapper .modal-btn.auth");
+    let closeButton = document.querySelector("button.btn-done");
+
+    // unauthorize
+    if(authorized) {
+        authButton.click();
+    }
+
+    closeButton.click();
+}
+
 chrome.runtime.onMessage.addListener(async (request, sender, response) => {
-    console.log(request);
     setGlobals(request);
-    await authenticate();
+    
+    if(request.action === 1) {
+        await authenticate();
+    }
+    else if(request.action === 2) {
+        unauthenticate();
+    }
 });
